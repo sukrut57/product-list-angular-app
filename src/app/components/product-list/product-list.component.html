@@ -14,9 +14,9 @@
                         @if(doesCartContainProduct(product.id)){
 
                           <div class="d-flex button-active z-1 align-items-center justify-content-between p-2">
-                            <img src="/images/icon-increment-quantity.svg" class="cart-icon-increment overflow-hidden" (click)="addToCart(product)">
+                            <img src="images/icon-increment-quantity.svg" class="cart-icon-increment overflow-hidden" (click)="addToCart(product)">
                             <span class="fw-medium button-text">{{getTotalCartQuantity(product.id)}}</span>
-                            <img src="/images/icon-decrement-quantity.svg" class="cart-icon-decrement overflow-hidden" (click)="removeProductFromCart(product)">
+                            <img src="images/icon-decrement-quantity.svg" class="cart-icon-decrement overflow-hidden" (click)="removeProductFromCart(product)">
                           </div>
 
                           <!--
@@ -32,7 +32,7 @@
                         } @else {
                           <button mat-raised-button class="cart-button py-3 px-4" (click)="addToCart(product)">
                             <div class="d-inline-flex align-items-center justify-content-between" >
-                              <img src="/images/icon-add-to-cart.svg" alt="" class="cart-icon">
+                              <img src="images/icon-add-to-cart.svg" alt="" class="cart-icon">
                               <span class="ps-2 fw-medium button-text">Add to Cart</span>
                             </div>
                           </button>
@@ -59,7 +59,7 @@
           <div class="col-lg-4 right-container py-5 px-3">
             <p class="fs-5 right-heading" style="font-weight: 900">Your Cart &#40;0&#41;</p>
             <div>
-              <img class="object-fit-contain cart-image" src="/images/illustration-empty-cart.svg" >
+              <img class="object-fit-contain cart-image" src="images/illustration-empty-cart.svg" >
             </div>
             <p class="text-center right-text">Your added items will appear here</p>
           </div>
@@ -83,7 +83,7 @@
                       </div>
                     </div>
                     <button mat-button (click)="removeFromCart(cartItem)">
-                      <img src="/images/icon-remove-item.svg" alt="" class="remove-icon p-1" >
+                      <img src="images/icon-remove-item.svg" alt="" class="remove-icon p-1" >
                     </button>
                   </div>
                 </div>
@@ -95,7 +95,7 @@
             </div>
 
             <div class="delivery d-inline-flex align-items-center justify-content-center w-100">
-              <img src="/images/icon-carbon-neutral.svg" style="">
+              <img src="images/icon-carbon-neutral.svg" style="">
               <p class="ps-2 content">This is a <span style="color: hsl(14, 65%, 9%);font-weight: bold;" >carbon-neutral</span> delivery</p>
             </div>
 
