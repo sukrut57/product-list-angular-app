@@ -1,0 +1,39 @@
+<mat-dialog-content style="scrollbar-width: none">
+  <div class="container d-flex flex-column align-items-start w-100 h-100" style="background-color: hsl(20, 50%, 98%)">
+    <div>
+      <img class="object-fit-contain pb-3" src="/images/icon-order-confirmed.svg" alt="" width="30px">
+      <p class="fs-3 fw-bolder pb-2">Order Confirmed</p>
+      <p class="fw-medium" style="color:hsl(7, 20%, 60%);font-size: 0.80rem">We hope you enjoy your food!</p>
+    </div>
+    <div class="order-contents w-100 mt-4">
+      @for(cartItem of cartItems;track $index){
+        <ng-container>
+
+          <div class="d-flex align-items-center justify-content-between p-md-4 p-2" >
+            <div class="d-flex">
+              <img src="{{cartItem.image}}" alt="" width="45px" class="object-fit-contain">
+              <div class="d-flex flex-column justify-content-between ps-3">
+                <p class="fw-bold overflow-auto" style="font-size: 0.80rem; letter-spacing: normal">{{cartItem.productName}}</p>
+                <div class="d-flex gap-2">
+                  <p class="cart-text-size fw-bold" style="color: hsl(14, 86%, 42%);">{{cartItem.quantity}}x</p>
+                  <p class="cart-text-size ps-1" style="color:hsl(7, 20%, 60%);">&#64;{{cartItem.price | currency:'USD'}}</p>
+                </div>
+              </div>
+
+            </div>
+            <p class="fw-bold cart-text-size" style="color:hsl(7, 20%, 60%);">{{(cartItem.price * cartItem.quantity) | currency:'USD'}}</p>
+          </div>
+          <div class="item-spacer"></div>
+        </ng-container>
+      }
+      <div class="d-flex justify-content-between align-items-center p-md-4 p-2">
+        <p style="color:hsl(14, 65%, 9%)">Order Total</p>
+        <p class="fw-bold fs-6">{{cartTotal | currency:'USD'}}</p>
+      </div>
+    </div>
+
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button mat-raised-button class="w-100 my-4 confirm-btn" [mat-dialog-close]="true">Start New Order</button>
+</mat-dialog-actions>

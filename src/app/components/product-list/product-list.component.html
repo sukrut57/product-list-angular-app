@@ -1,0 +1,113 @@
+<div class="container-fluid product-list p-2 p-md-5">
+  <div class="p-4">
+    <h1 class="fs-3 title">Desserts</h1>
+    <div class="row">
+      <div class="col-lg-8 left-container">
+        <div class="container-fluid p-0 pe-md-3">
+            <div class="row" >
+              @for(product of products;track $index){
+                  <div class="col-md-4 py-3">
+                    <mat-card class="product-card border-0" appearance="outlined">
+                      <img class="product-image" mat-card-image src="{{product.image.desktop}}" alt="product_photo">
+                      <mat-card-actions class="button-position" >
+
+                        @if(doesCartContainProduct(product.id)){
+
+                          <div class="d-flex button-active z-1 align-items-center justify-content-between p-2">
+                            <img src="/images/icon-increment-quantity.svg" class="cart-icon-increment overflow-hidden" (click)="addToCart(product)">
+                            <span class="fw-medium button-text">{{getTotalCartQuantity(product.id)}}</span>
+                            <img src="/images/icon-decrement-quantity.svg" class="cart-icon-decrement overflow-hidden" (click)="removeProductFromCart(product)">
+                          </div>
+
+                          <!--
+                           <button mat-raised-button class="cart-button py-3 px-4 bg-primary">
+                            <div class="d-inline-flex align-items-center justify-content-between">
+                              <img src="/images/icon-increment-quantity.svg" class="cart-icon">
+                              <span class="fw-medium button-text">{{currentQuantityInCart}}</span>
+                              <img src="/images/icon-decrement-quantity.svg" class="cart-icon">
+
+                            </div>
+                          </button>
+                           -->
+                        } @else {
+                          <button mat-raised-button class="cart-button py-3 px-4" (click)="addToCart(product)">
+                            <div class="d-inline-flex align-items-center justify-content-between" >
+                              <img src="/images/icon-add-to-cart.svg" alt="" class="cart-icon">
+                              <span class="ps-2 fw-medium button-text">Add to Cart</span>
+                            </div>
+                          </button>
+                        }
+
+                      </mat-card-actions>
+                      <mat-card-content>
+                        <div class="product-content">
+                          <p>{{product.category}}</p>
+                          <p>{{product.name}}</p>
+                          <p>{{product.price | currency : 'USD'}}</p>
+                        </div>
+                      </mat-card-content>
+                    </mat-card>
+
+                  </div>
+              }
+            </div>
+        </div>
+      </div>
+
+      @if(totalQuantity===0){
+        <ng-container>
+          <div class="col-lg-4 right-container py-5 px-3">
+            <p class="fs-5 right-heading" style="font-weight: 900">Your Cart &#40;0&#41;</p>
+            <div>
+              <img class="object-fit-contain cart-image" src="/images/illustration-empty-cart.svg" >
+            </div>
+            <p class="text-center right-text">Your added items will appear here</p>
+          </div>
+        </ng-container>
+
+      } @else {
+        <ng-container>
+          <div class="col-lg-4 right-container-active p-4">
+            <p class="fs-5 right-heading"  style="font-weight: 900">Your Cart &#40;{{totalQuantity}}&#41;</p>
+            @for (cartItem of cartItems;track $index){
+              <ng-container class="d-flex justify-content-between align-items-center py-3">
+                <div class="d-flex flex-column align-items-start justify-content-between py-3 item">
+                  <div class="d-inline-flex align-items-center justify-content-between w-100">
+                    <div>
+                      <p class="fw-bold" style="font-size: 0.80rem; letter-spacing: normal">{{cartItem.productName}}</p>
+                      <div class="d-inline-flex gap-2">
+                        <p class="cart-text-size fw-bold" style="color: hsl(14, 86%, 42%);">{{cartItem.quantity}}x</p>
+                        <p class="cart-text-size ps-1" style="color:hsl(7, 20%, 60%);">&#64;{{cartItem.price | currency:'USD'}}</p>
+                        <p class="fw-bold cart-text-size" style="color:hsl(7, 20%, 60%);">{{cartItem.price | currency:'USD'}}</p>
+
+                      </div>
+                    </div>
+                    <button mat-button (click)="removeFromCart(cartItem)">
+                      <img src="/images/icon-remove-item.svg" alt="" class="remove-icon p-1" >
+                    </button>
+                  </div>
+                </div>
+              </ng-container>
+            }
+            <div class="d-inline-flex align-items-center justify-content-between w-100 py-3">
+              <p class="text-start pb-3 right-text fs-6 w-100 fw-light" style="color:hsl(14, 65%, 9%)">Order Total:</p>
+              <p class="fs-4 fw-bold text-end">{{cartTotal | currency:'USD'}}</p>
+            </div>
+
+            <div class="delivery d-inline-flex align-items-center justify-content-center w-100">
+              <img src="/images/icon-carbon-neutral.svg" style="">
+              <p class="ps-2 content">This is a <span style="color: hsl(14, 65%, 9%);font-weight: bold;" >carbon-neutral</span> delivery</p>
+            </div>
+
+            <div class="d-inline-flex align-items-center justify-content-center w-100">
+              <button mat-raised-button class="w-100 my-4 confirm-btn" (click) ="openConfirmationDialog()">Confirm Order</button>
+            </div>
+          </div>
+
+        </ng-container>
+      }
+
+    </div>
+
+  </div>
+</div>
