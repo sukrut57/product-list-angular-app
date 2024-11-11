@@ -17,7 +17,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ## Deploy the application to the server - Github pages
 Run `npm install -g angular-cli-ghpages` to install the angular-cli-ghpages package globally.
 
-Run  `ng build  --base-href "https://{{github_profile}}.github.io/{{repo_name}}/browser/"` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run  `ng build --base-href "https://{{github_profile}}.github.io/{{repo_name}}/"` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 RUN `npx  angular-cli-ghpages --dir=dist/{{repo_name}}/browser`
 
